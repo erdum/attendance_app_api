@@ -74,6 +74,8 @@ SQL;
 
     $stmt->bindParam(':id', $id, SQLITE3_INTEGER);
 
-    $stmt->execute();
+    $result = $stmt->execute();
     $stmt->reset();
+
+    return $result->fetchArray();
 }
