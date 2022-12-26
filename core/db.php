@@ -2,7 +2,7 @@
 
 $db = new SQLite3('database/database.db');
 
-function getAllUsers() {
+function getAllAttendances() {
     global $db;
     $query = <<<SQL
     select * from attendance;
