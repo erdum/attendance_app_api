@@ -3,6 +3,7 @@
 $db = new SQLite3('database/database.db');
 
 function getAllAttendances() {
+
     global $db;
     $query = <<<SQL
     select * from attendance;
@@ -26,6 +27,7 @@ function insertCheckIn(
     $check_in_coordinates,
     $check_in_location
 ) {
+
     global $db;
     $query = <<<SQL
     insert into attendance (
@@ -56,6 +58,21 @@ SQL;
     $stmt->bindParam(':time', $check_in_time, SQLITE3_TEXT);
     $stmt->bindParam(':coordinates', $check_in_co0rdinates, SQLITE3_TEXT);
     $stmt->bindParam(':location', $check_in_location, SQLITE3_TEXT);
+
+    $stmt->execute();
+    $stmt->reset();
+}
+
+function getAttendance($id) {
+
+    global $db;
+    $query = <<<SQL
+    select * from attendance where id = :id;
+SQL;
+
+    $stmt = $db->prepare($query);
+
+    $stmt->bindParam(':id', $id, SQLITE3_INTEGER);
 
     $stmt->execute();
     $stmt->reset();
