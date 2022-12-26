@@ -1,6 +1,6 @@
 <?php
 
-$db = new SQLite3('database.db');
+$db = new SQLite3('database/database.db');
 
 function getAllUsers() {
     global $db;
