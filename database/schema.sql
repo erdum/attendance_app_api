@@ -1,5 +1,6 @@
 CREATE TABLE attendance (
-    uid INTEGER PRIMARY KEY,
+    id INTEGER PRIMARY KEY,
+    uid text,
     name text,
     email text,
     check_in_date text,
