@@ -23,7 +23,7 @@ function insertCheckIn(
     $email,
     $check_in_date,
     $check_in_time,
-    $check_in_cordinates,
+    $check_in_coordinates,
     $check_in_location
 ) {
     global $db;
@@ -34,7 +34,7 @@ function insertCheckIn(
         email,
         check_in_date,
         check_in_time,
-        check_in_cordinates,
+        check_in_coordinates,
         check_in_location
     ) values (
         :uid,
@@ -42,7 +42,7 @@ function insertCheckIn(
         :email,
         :date,
         :time,
-        :cordinates,
+        :coordinates,
         :location
     );
 SQL;
@@ -54,7 +54,7 @@ SQL;
     $stmt->bindParam(':email', $email, SQLITE3_TEXT);
     $stmt->bindParam(':date', $check_in_date, SQLITE3_TEXT);
     $stmt->bindParam(':time', $check_in_time, SQLITE3_TEXT);
-    $stmt->bindParam(':cordinates', $check_in_cordinates, SQLITE3_TEXT);
+    $stmt->bindParam(':coordinates', $check_in_co0rdinates, SQLITE3_TEXT);
     $stmt->bindParam(':location', $check_in_location, SQLITE3_TEXT);
 
     $stmt->execute();

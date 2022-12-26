@@ -9,7 +9,16 @@ get('/attendances', function() {
 });
 
 post('/attendance', function() {
-  exit(print_r($_POST));
+  
+  $params = array(
+    'uid',
+    'name',
+    'email',
+    'date',
+    'time',
+    'coordinates',
+    'location'
+  );
 });
 
 any('/404', '404.php');
