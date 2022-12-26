@@ -45,6 +45,7 @@ function insertCheckIn(
         :cordinates,
         :location
     );
+SQL;
 
     $stmt = $db->prepare($query);
 
