@@ -23,6 +23,20 @@ post('/attendance', function() {
   if (count(array_diff($params, array_keys($_POST))) > 0) {
     send_response(['message' => 'Missing input parameters'], 400);
   }
+
+  insertCheckIn(
+    $_POST['uid'],
+    $_POST['name'],
+    $_POST['email'],
+    $_POST['date'],
+    $_POST['time'],
+    $_POST['coordinates'],
+    $_POST['location']
+  );
+});
+
+get('/attendance/$id', function($id) {
+  send_response(getAttendance($id));
 });
 
 any('/404', '404.php');
