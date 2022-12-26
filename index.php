@@ -19,6 +19,10 @@ post('/attendance', function() {
     'coordinates',
     'location'
   );
+
+  if (count(array_diff($params, array_keys($_POST))) > 0) {
+    send_response(['message' => 'Missing input parameters'], 400);
+  }
 });
 
 any('/404', '404.php');
