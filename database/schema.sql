@@ -7,7 +7,7 @@ CREATE TABLE attendance (
     check_in_time text,
     check_out_date text,
     check_out_time text,
-    check_in_cordinates text,
+    check_in_coordinates text,
     check_out_coordinates text,
     check_in_location text
 );
