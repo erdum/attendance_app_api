@@ -39,7 +39,7 @@ put('/attendance', function() {
 
     send_response(['message' => 'Attendance successfully saved'], 201);
   } catch (Exception $err) {
-    send_response(['message' => 'Unable to save attendance, error occurred'], 500);
+    send_response(['message' => 'Unable to save attendance, error occurred', 'error' => $err], 500);
   }
   
 });
