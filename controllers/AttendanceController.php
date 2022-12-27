@@ -86,4 +86,35 @@ class AttendanceController {
             send_response(['message' => 'Unable to save attendance, error occurred', 'error' => $err], 500);
         }
     }
+
+    public function markCheckout() {
+
+        $params = array(
+            'uid',
+            'date',
+            'time',
+            'coordinates',
+        );
+        $data = json_decode(file_get_contents("php://input"), true);
+
+        if (count(array_diff($params, array_keys($data))) > 0) {
+            send_response(['message' => 'Missing input parameters'], 400);
+        }
+
+        $check_in_date = date('Ymd', strtotime('-6 hours', $data['time']));
+
+        try {
+            $this->model->updateCheckout(
+                $data['uid'],
+                $check_in_date,
+                $data['date'],
+                $data['time'],
+                $data['coordinates']
+            );
+
+            send_response(['message' => 'Checkout successfully saved', 'data' => $data], 201);
+        } catch (Exception $err) {
+            send_response(['message' => 'Unable to save checkout, error occurred', 'error' => $err], 500);
+        }
+    }
 }
