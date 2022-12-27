@@ -2,6 +2,8 @@
 
 class AttendanceModel {
 
+    private $db;
+
     public function __construct($db_file_path) {
         $this->db = new SQLite3($db_file_path);
     }
