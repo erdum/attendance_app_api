@@ -63,7 +63,7 @@ SQL;
     $stmt->reset();
 }
 
-funciton getUserAttendanceByDate($uid, $date) {
+function getUserAttendanceByDate($uid, $date) {
 
     global $db;
     $query = <<<SQL
