@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__.'/response.php';
+require_once __DIR__.'/helpers.php';
 
 session_start();
 function get($route, $path_to_include){
