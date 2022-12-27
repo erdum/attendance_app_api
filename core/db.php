@@ -13,7 +13,7 @@ SQL;
     $rows = array();
 
     while($row = $result->fetchArray(SQLITE3_ASSOC)) {
-        array_push($row, $rows);
+        array_push($rows, $row);
     }
     return $rows;
 }
