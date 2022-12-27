@@ -84,8 +84,10 @@ SQL;
 function getAttendancesByDate($date) {
 
     global $db;
+
+    $next_month = date("d-M-Y", strtotime('+1 month', strtotime($date)));
     $query = <<<SQL
-    select * from attendance where check_in_date >= $date
+    select * from attendance where check_in_date >= $date and check_in_date < $next_month;
 SQL;
 
     $result = $db->query($query);
