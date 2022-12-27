@@ -102,7 +102,7 @@ SQL;
 
         $stmt->bindParam(':uid', $uid, SQLITE3_TEXT);
         $stmt->bindParam(':check_in_date', $check_in_date, SQLITE3_INTEGER);
-        $stmt->bindParam(':date', $date, SQLITE3_INTEGER);
+        $stmt->bindParam(':date', date('Ymd', strtotime($date)), SQLITE3_INTEGER);
         $stmt->bindParam(':time', $time, SQLITE3_INTEGER);
         $stmt->bindParam(':coordinates', $coordinates, SQLITE3_TEXT);
 
