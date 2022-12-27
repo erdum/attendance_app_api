@@ -26,17 +26,22 @@ put('/attendance', function() {
     send_response(['message' => 'Missing input parameters'], 400);
   }
 
-  insertCheckIn(
-    $data['uid'],
-    $data['name'],
-    $data['email'],
-    $data['date'],
-    $data['time'],
-    $data['coordinates'],
-    $data['location']
-  );
+  try {
+    insertCheckIn(
+      $data['uid'],
+      $data['name'],
+      $data['email'],
+      $data['date'],
+      $data['time'],
+      $data['coordinates'],
+      $data['location']
+    );
 
-  send_response(['message' => 'Attendance successfully saved'], 201);
+    send_response(['message' => 'Attendance successfully saved'], 201);
+  } catch (Exception $err) {
+    send_response(['message' => 'Unable to save attendance, error occurred'], 500);
+  }
+  
 });
 
 get('/attendance/$id', function($id) {
@@ -46,7 +51,7 @@ get('/attendance/$id', function($id) {
   if (!$attendance) {
     send_response(['message' => 'Requested resource not found'], 404);
   }
-  
+
   send_response(getAttendance($id));
 });
 
