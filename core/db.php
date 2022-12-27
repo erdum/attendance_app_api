@@ -51,7 +51,7 @@ SQL;
 
     $stmt = $db->prepare($query);
 
-    $stmt->bindParam(':uid', $uid, SQLITE3_INTEGER);
+    $stmt->bindParam(':uid', $uid, SQLITE3_TEXT);
     $stmt->bindParam(':name', $name, SQLITE3_TEXT);
     $stmt->bindParam(':email', $email, SQLITE3_TEXT);
     $stmt->bindParam(':date', $check_in_date, SQLITE3_TEXT);
