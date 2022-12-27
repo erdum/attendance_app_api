@@ -52,7 +52,7 @@ get('/attendance/$id/$date', function($id, $date) {
     send_response(['message' => 'Requested resource not found'], 404);
   }
 
-  send_response(getAttendance($id));
+  send_response(['data' => $attendance]);
 });
 
 any('/404', '404.php');
