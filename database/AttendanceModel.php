@@ -75,11 +75,12 @@ SQL;
 SQL;
 
         $stmt = $this->db->prepare($query);
+        $formatted_date = date('Ymd', strtotime($check_in_date));
 
         $stmt->bindParam(':uid', $uid, SQLITE3_TEXT);
         $stmt->bindParam(':name', $name, SQLITE3_TEXT);
         $stmt->bindParam(':email', $email, SQLITE3_TEXT);
-        $stmt->bindParam(':date', date('Ymd', strtotime($check_in_date)), SQLITE3_INTEGER);
+        $stmt->bindParam(':date', $formatted_date, SQLITE3_INTEGER);
         $stmt->bindParam(':time', $check_in_time, SQLITE3_INTEGER);
         $stmt->bindParam(':coordinates', $check_in_coordinates, SQLITE3_TEXT);
         $stmt->bindParam(':location', $check_in_location, SQLITE3_TEXT);
@@ -99,10 +100,11 @@ SQL;
 SQL;
 
         $stmt = $this->db->prepare($query);
+        $formatted_date = date('Ymd', strtotime($date));
 
         $stmt->bindParam(':uid', $uid, SQLITE3_TEXT);
         $stmt->bindParam(':check_in_date', $check_in_date, SQLITE3_INTEGER);
-        $stmt->bindParam(':date', date('Ymd', strtotime($date)), SQLITE3_INTEGER);
+        $stmt->bindParam(':date', $formatted_date, SQLITE3_INTEGER);
         $stmt->bindParam(':time', $time, SQLITE3_INTEGER);
         $stmt->bindParam(':coordinates', $coordinates, SQLITE3_TEXT);
 
