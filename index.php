@@ -4,15 +4,33 @@ require_once __DIR__.'/core/router.php';
 require_once __DIR__.'/core/response.php';
 require_once __DIR__.'/core/db.php';
 
-get('/attendances/after/$date', function($date) {
+get('/attendance/csv/$year/$month', function($month, $year) {
 
+  $date = "01-$month-$year";
   $attendances = getAttendancesByDate($date);
 
-  if (!$attendances) {
-    send_response(['message' => 'Requested resource not found'], 404);
-  }
+  header('Content-Type: text/csv; charset=utf-8');  
+  header('Content-Disposition: attachment; filename=attendance.csv');
 
-  send_response(['date' => $attendances]);
+  $output = fopen("php://output", "w");
+  fputcsv($output, array(
+    'id',
+    'uid',
+    'name',
+    'email',
+    'check_in_date',
+    'check_in_time',
+    'check_out_date',
+    'check_out_time',
+    'check_in_coordinates',
+    'check_out_coordinates',
+    'check_in_location'
+  ));
+
+  foreach($attendances as $attendance) {
+    fputcsv($output, $attendance);
+  }
+  fclose($output);
 });
 
 put('/attendance', function() {
