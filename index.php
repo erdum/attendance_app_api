@@ -9,8 +9,9 @@ $config = array(
 
 $attendanceController = new AttendanceController($config['db_path']);
 
-get('attendance/today/$date', array($attendanceController, 'getAttendanceByDay'));
+get('/attendance/today/$date', array($attendanceController, 'getAttendanceByDay'));
 get('/attendance/csv/$year/$month', array($attendanceController, 'getMonthlyAttendanceCSV'));
+put('/attendance/checkout', array($attendanceController, 'markCheckout'));
 put('/attendance', array($attendanceController, 'markAttendance'));
 
 any('/404', '404.php');
