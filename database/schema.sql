@@ -3,7 +3,7 @@ CREATE TABLE attendance (
     uid text NOT NULL,
     name text NOT NULL,
     email text NOT NULL,
-    check_in_date text NOT NULL UNIQUE,
+    check_in_date text NOT NULL,
     check_in_time text NOT NULL,
     check_out_date text,
     check_out_time text,
@@ -11,3 +11,6 @@ CREATE TABLE attendance (
     check_out_coordinates text,
     check_in_location text NOT NULL
 );
+
+CREATE INDEX uid ON attendance (uid);
+CREATE UNIQUE INDEX attendance_date ON attendance (check_in_date);
