@@ -87,4 +87,26 @@ SQL;
         $stmt->execute();
         $stmt->reset();
     }
+
+    public function updateCheckout($uid, $check_in_date, $date, $time, $coordinates) {
+
+        $query = <<<SQL
+        update attendance set
+            check_out_date = :date,
+            check_out_time = :time,
+            check_out_coordinates = :coordinates
+        where uid = :uid and check_in_date = :check_in_date;
+SQL;
+
+        $stmt = $this->db->prepare($query);
+
+        $stmt->bindParam(':uid', $uid, SQLITE3_TEXT);
+        $stmt->bindParam(':check_in_date', $check_in_date, SQLITE3_INTEGER);
+        $stmt->bindParam(':date', $date, SQLITE3_INTEGER);
+        $stmt->bindParam(':time', $time, SQLITE3_INTEGER);
+        $stmt->bindParam(':coordinates', $coordinates, SQLITE3_TEXT);
+
+        $stmt->execute();
+        $stmt->reset();
+    }
 }
