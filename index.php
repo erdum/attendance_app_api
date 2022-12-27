@@ -4,8 +4,15 @@ require_once __DIR__.'/core/router.php';
 require_once __DIR__.'/core/response.php';
 require_once __DIR__.'/core/db.php';
 
-get('/attendances', function() {
-  send_response(getAllAttendances());
+get('/attendances/after/$date', function($date) {
+
+  $attendances = getAttendancesByDate($date);
+
+  if (!$attendances) {
+    send_response(['message' => 'Requested resource not found'], 404);
+  }
+
+  send_response(['date' => $attendances]);
 });
 
 put('/attendance', function() {
