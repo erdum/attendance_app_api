@@ -3,10 +3,14 @@
 require_once __DIR__.'/core/router.php';
 require_once __DIR__.'/controllers/AttendanceController.php';
 
-$attendanceController = new AttendanceController();
+$config = array(
+  'db_path' => __DIR__.'/database/database.db'
+);
 
-get('attendance/today/$date', $attendanceController->getAttendanceByDay($date));
-get('/attendance/csv/$year/$month', $attendanceController->getMonthlyAttendanceCSV($year, $month));
-put('/attendance', $attendanceController->markAttendance());
+$attendanceController = new AttendanceController($config['db_path']);
+
+get('attendance/today/$date', array($attendanceController, 'getAttendanceByDay'));
+get('/attendance/csv/$year/$month', array($attendanceController, 'getMonthlyAttendanceCSV'));
+put('/attendance', array($attendanceController, 'markAttendance'));
 
 any('/404', '404.php');
