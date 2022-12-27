@@ -4,10 +4,12 @@ require_once __DIR__.'/core/router.php';
 require_once __DIR__.'/core/response.php';
 require_once __DIR__.'/core/db.php';
 
-get('/attendance/csv/$year/$month', function($month, $year) {
+get('/attendance/csv/$year/$month', function($year, $month) {
 
+  global $db;
   $date = "01-$month-$year";
-  $attendances = getAttendancesByDate($date);
+
+  $result = getAttendanceByMonth($date);
 
   header('Content-Type: text/csv; charset=utf-8');  
   header('Content-Disposition: attachment; filename=attendance.csv');
@@ -27,8 +29,8 @@ get('/attendance/csv/$year/$month', function($month, $year) {
     'check_in_location'
   ));
 
-  foreach($attendances as $attendance) {
-    fputcsv($output, $attendance);
+  while($row = $result->fetchArray(SQLITE3_ASSOC)) {
+    fputcsv($output, $row);
   }
   fclose($output);
 });

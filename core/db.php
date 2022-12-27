@@ -2,20 +2,26 @@
 
 $db = new SQLite3('database/database.db');
 
-function getAllAttendances() {
+function getAttendanceByMonth($date) {
 
     global $db;
     $query = <<<SQL
-    select * from attendance;
+    select * from attendance where check_in_date >= :from_date and check_in_date < :to_date ;
 SQL;
 
-    $result = $db->query($query);
-    $rows = array();
+    $stmt = $db->prepare($query);
 
-    while($row = $result->fetchArray(SQLITE3_ASSOC)) {
-        array_push($rows, $row);
-    }
-    return $rows;
+    $from_date = date('Ymd', strtotime($date));
+    $to_date = date("Ymd", strtotime('+1 month', strtotime($date)));
+    exit($to_date);
+
+    $stmt->bindParam(':from_date', (int) $date, SQLITE3_INTEGER);
+    $stmt->bindParam(':to_date', (int) $to_date, SQLITE3_INTEGER);
+
+    $result = $stmt->execute();
+    $stmt->reset();
+
+    return $result;    
 }
 
 function insertCheckIn(
@@ -79,22 +85,4 @@ SQL;
     $stmt->reset();
 
     return $result->fetchArray(SQLITE3_ASSOC);
-}
-
-function getAttendancesByDate($date) {
-
-    global $db;
-
-    $next_month = date("d-M-Y", strtotime('+1 month', strtotime($date)));
-    $query = <<<SQL
-    select * from attendance where check_in_date >= $date and check_in_date < $next_month;
-SQL;
-
-    $result = $db->query($query);
-    $rows = array();
-
-    while($row = $result->fetchArray(SQLITE3_ASSOC)) {
-        array_push($rows, $row);
-    }
-    return $rows;
 }
