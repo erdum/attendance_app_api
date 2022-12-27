@@ -10,6 +10,10 @@ class AttendanceController {
 
     public function getAttendanceByDay($date) {
 
+        if (!checkInputDate($date)) {
+            send_response(['message' => 'Invalid input parameters expected input DD-MM-YYYY'], 400);
+        }
+
         $attendances = $this->model->byDay($date);
 
         $data = array();
@@ -24,6 +28,10 @@ class AttendanceController {
     public function getMonthlyAttendanceCSV($year, $month) {
         
         $date = "01-$month-$year";
+
+        if (!checkInputDate($date)) {
+            send_response(['message' => 'Invalid input parameters expected input DD-MM-YYYY'], 400);
+        }
 
         $result = $this->model->byMonth($date);
 
