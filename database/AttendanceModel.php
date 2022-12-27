@@ -10,7 +10,7 @@ class AttendanceModel {
         
         $query = <<<SQL
         select * from attendance where check_in_date = :date;
-        SQL;
+SQL;
 
         $stmt = $this->db->prepare($query);
 
@@ -27,7 +27,7 @@ class AttendanceModel {
 
         $query = <<<SQL
         select * from attendance where check_in_date >= :from_date and check_in_date < :to_date;
-        SQL;
+SQL;
 
         $stmt = $this->db->prepare($query);
 
@@ -70,7 +70,7 @@ class AttendanceModel {
             :coordinates,
             :location
         );
-        SQL;
+SQL;
 
         $stmt = $this->db->prepare($query);
 
