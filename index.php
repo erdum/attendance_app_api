@@ -44,9 +44,9 @@ put('/attendance', function() {
   
 });
 
-get('/attendance/$id', function($id) {
+get('/attendance/$id/$date', function($id, $date) {
 
-  $attendance = getAttendance($id);
+  $attendance = getUserAttendanceByDate($id, $date);
 
   if (!$attendance) {
     send_response(['message' => 'Requested resource not found'], 404);

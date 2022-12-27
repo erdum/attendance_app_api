@@ -63,16 +63,17 @@ SQL;
     $stmt->reset();
 }
 
-function getAttendance($uid) {
+funciton getUserAttendanceByDate($uid, $date) {
 
     global $db;
     $query = <<<SQL
-    select * from attendance where uid = :uid;
+    select * from attendance where uid = :uid and check_in_date = :date;
 SQL;
 
     $stmt = $db->prepare($query);
 
     $stmt->bindParam(':uid', $uid, SQLITE3_TEXT);
+    $stmt->bindParam(':date', $date, SQLITE3_TEXT);
 
     $result = $stmt->execute();
     $stmt->reset();
