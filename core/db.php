@@ -79,5 +79,5 @@ SQL;
     $result = $stmt->execute();
     $stmt->reset();
 
-    return $result->fetchArray();
+    return $result->fetchArray(SQLITE3_ASSOC);
 }
