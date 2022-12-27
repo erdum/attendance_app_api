@@ -8,7 +8,7 @@ get('/attendances', function() {
   send_response(getAllAttendances());
 });
 
-post('/attendance', function() {
+put('/attendance', function() {
   
   $params = array(
     'uid',
@@ -20,22 +20,33 @@ post('/attendance', function() {
     'location'
   );
 
-  if (count(array_diff($params, array_keys($_POST))) > 0) {
+  $data = json_decode(file_get_contents("php://input"), true);
+
+  if (count(array_diff($params, array_keys($data))) > 0) {
     send_response(['message' => 'Missing input parameters'], 400);
   }
 
   insertCheckIn(
-    $_POST['uid'],
-    $_POST['name'],
-    $_POST['email'],
-    $_POST['date'],
-    $_POST['time'],
-    $_POST['coordinates'],
-    $_POST['location']
+    $data['uid'],
+    $data['name'],
+    $data['email'],
+    $data['date'],
+    $data['time'],
+    $data['coordinates'],
+    $data['location']
   );
+
+  send_response(['message' => 'Attendance successfully marked'], 201);
 });
 
 get('/attendance/$id', function($id) {
+
+  $attendance = getAttendance($id);
+
+  if (!$attendance) {
+    send_response(['message' => 'Requested resource not found'], 404);
+  }
+  
   send_response(getAttendance($id));
 });
 
