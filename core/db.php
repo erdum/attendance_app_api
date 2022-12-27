@@ -63,16 +63,16 @@ SQL;
     $stmt->reset();
 }
 
-function getAttendance($id) {
+function getAttendance($uid) {
 
     global $db;
     $query = <<<SQL
-    select * from attendance where id = :id;
+    select * from attendance where uid = :uid;
 SQL;
 
     $stmt = $db->prepare($query);
 
-    $stmt->bindParam(':id', $id, SQLITE3_INTEGER);
+    $stmt->bindParam(':uid', $uid, SQLITE3_TEXT);
 
     $result = $stmt->execute();
     $stmt->reset();
