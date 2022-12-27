@@ -13,4 +13,4 @@ CREATE TABLE attendance (
 );
 
 CREATE INDEX uid ON attendance (uid);
-CREATE UNIQUE INDEX attendance_date ON attendance (check_in_date);
+CREATE UNIQUE INDEX attendance_date ON attendance (uid, check_in_date);
