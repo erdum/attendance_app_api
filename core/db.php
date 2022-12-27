@@ -61,8 +61,6 @@ SQL;
 
     $stmt->execute();
     $stmt->reset();
-
-    send_response(['message' => 'Attendance successfully marked'], 201);
 }
 
 function getAttendance($id) {
