@@ -4,6 +4,17 @@ require_once __DIR__.'/core/router.php';
 require_once __DIR__.'/core/response.php';
 require_once __DIR__.'/core/db.php';
 
+get('attendance/today/$date', function($date) {
+
+  $attendances = getAttendanceByDay($date);
+
+  if (!$attendances) {
+    send_response(['message' => 'Requested resource not found'], 404);
+  }
+
+  send_response(['data' => $attendances]);
+});
+
 get('/attendance/csv/$year/$month', function($year, $month) {
 
   global $db;
