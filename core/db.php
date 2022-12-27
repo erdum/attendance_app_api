@@ -11,12 +11,11 @@ SQL;
 
     $stmt = $db->prepare($query);
 
-    $from_date = date('Ymd', strtotime($date));
-    $to_date = date("Ymd", strtotime('+1 month', strtotime($date)));
-    exit($to_date);
+    $from_date = (int) date('Ymd', strtotime($date));
+    $to_date = (int) date("Ymd", strtotime('+1 month', strtotime($date)));
 
-    $stmt->bindParam(':from_date', (int) $date, SQLITE3_INTEGER);
-    $stmt->bindParam(':to_date', (int) $to_date, SQLITE3_INTEGER);
+    $stmt->bindParam(':from_date', $from_date, SQLITE3_INTEGER);
+    $stmt->bindParam(':to_date', $to_date, SQLITE3_INTEGER);
 
     $result = $stmt->execute();
     $stmt->reset();
@@ -60,8 +59,8 @@ SQL;
     $stmt->bindParam(':uid', $uid, SQLITE3_TEXT);
     $stmt->bindParam(':name', $name, SQLITE3_TEXT);
     $stmt->bindParam(':email', $email, SQLITE3_TEXT);
-    $stmt->bindParam(':date', $check_in_date, SQLITE3_TEXT);
-    $stmt->bindParam(':time', $check_in_time, SQLITE3_TEXT);
+    $stmt->bindParam(':date', date('Ymd', strtotime($check_in_date)), SQLITE3_INTEGER);
+    $stmt->bindParam(':time', $check_in_time, SQLITE3_INTEGER);
     $stmt->bindParam(':coordinates', $check_in_coordinates, SQLITE3_TEXT);
     $stmt->bindParam(':location', $check_in_location, SQLITE3_TEXT);
 
