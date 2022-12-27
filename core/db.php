@@ -80,3 +80,19 @@ SQL;
 
     return $result->fetchArray(SQLITE3_ASSOC);
 }
+
+function getAttendancesByDate($date) {
+
+    global $db;
+    $query = <<<SQL
+    select * from attendance where check_in_date >= $date
+SQL;
+
+    $result = $db->query($query);
+    $rows = array();
+
+    while($row = $result->fetchArray(SQLITE3_ASSOC)) {
+        array_push($rows, $row);
+    }
+    return $rows;
+}
