@@ -56,11 +56,13 @@ SQL;
     $stmt->bindParam(':email', $email, SQLITE3_TEXT);
     $stmt->bindParam(':date', $check_in_date, SQLITE3_TEXT);
     $stmt->bindParam(':time', $check_in_time, SQLITE3_TEXT);
-    $stmt->bindParam(':coordinates', $check_in_co0rdinates, SQLITE3_TEXT);
+    $stmt->bindParam(':coordinates', $check_in_coordinates, SQLITE3_TEXT);
     $stmt->bindParam(':location', $check_in_location, SQLITE3_TEXT);
 
     $stmt->execute();
     $stmt->reset();
+
+    send_response(['message' => 'Attendance successfully marked'], 201);
 }
 
 function getAttendance($id) {
