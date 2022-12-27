@@ -9,6 +9,7 @@ get('/attendance/csv/$year/$month', function($year, $month) {
   global $db;
   $date = "01-$month-$year";
 
+  // @return SQLITE3Result
   $result = getAttendanceByMonth($date);
 
   header('Content-Type: text/csv; charset=utf-8');  
