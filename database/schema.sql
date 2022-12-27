@@ -3,7 +3,7 @@ CREATE TABLE attendance (
     uid text NOT NULL,
     name text NOT NULL,
     email text NOT NULL,
-    check_in_date text NOT NULL,
+    check_in_date text NOT NULL UNIQUE,
     check_in_time text NOT NULL,
     check_out_date text,
     check_out_time text,
