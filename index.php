@@ -36,7 +36,7 @@ put('/attendance', function() {
     $data['location']
   );
 
-  send_response(['message' => 'Attendance successfully marked'], 201);
+  send_response(['message' => 'Attendance successfully saved'], 201);
 });
 
 get('/attendance/$id', function($id) {
