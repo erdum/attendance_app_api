@@ -11,6 +11,7 @@ $attendanceController = new AttendanceController($config['db_path']);
 
 get('/attendance/today/$date', array($attendanceController, 'getAttendanceByDay'));
 get('/attendance/csv/$year/$month', array($attendanceController, 'getMonthlyAttendanceCSV'));
+get('/attendance/$date/$uid', array($attendanceController, 'getUserTodayAttendance'));
 post('/attendance/$uid', array($attendanceController, 'markCheckout'));
 post('/attendance', array($attendanceController, 'markAttendance'));
 
