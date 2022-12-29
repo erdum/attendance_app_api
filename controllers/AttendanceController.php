@@ -95,10 +95,9 @@ class AttendanceController {
         }
     }
 
-    public function markCheckout() {
+    public function markCheckout($uid) {
 
         $params = array(
-            'uid',
             'date',
             'time',
             'coordinates',
@@ -113,7 +112,7 @@ class AttendanceController {
 
         try {
             $this->model->updateCheckout(
-                $data['uid'],
+                $uid,
                 $check_in_date,
                 $data['date'],
                 $data['time'],
