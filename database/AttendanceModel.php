@@ -8,6 +8,23 @@ class AttendanceModel {
         $this->db = new SQLite3($db_file_path);
     }
 
+    public function userByDay($uid, $date) {
+        $query = <<<SQL
+        select * from attendance where uid = :uid and check_in_date = :date;
+SQL;
+
+        $stmt = $this->db->prepare($query);
+
+        $day = (int) date('Ymd', strtotime($date));
+        $stmt->bindParam(':date', $day, SQLITE3_INTEGER);
+        $stmt->bindParam(':uid', $uid, SQLITE3_TEXT);
+
+        $result = $stmt->execute();
+        $stmt->reset();
+
+        return $result->fetchArray(SQLITE3_ASSOC);
+    }
+
     public function byDay($date) {
         
         $query = <<<SQL
