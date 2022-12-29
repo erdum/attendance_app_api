@@ -8,6 +8,21 @@ class AttendanceController {
         $this->model = new AttendanceModel($db_file_path);
     }
 
+    public function getUserTodayAttendance($date, $uid) {
+
+        if (!checkInputDate($date)) {
+            send_response(array('message' => 'Invalid input parameters expected input DD-MM-YYYY'), 400);
+        }
+
+        $attendance = $this->model->userByDay($uid, $date);
+
+        if (!$attendance) {
+            send_response(array('message' => 'Requested resource not found'), 404);
+        }
+
+        send_response(array('data' => $attendance));
+    }
+
     public function getAttendanceByDay($date) {
 
         if (!checkInputDate($date)) {
