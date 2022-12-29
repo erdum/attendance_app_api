@@ -11,7 +11,7 @@ class AttendanceController {
     public function getUserTodayAttendance($date, $uid) {
 
         if (!checkInputDate($date)) {
-            send_response(array('message' => 'Invalid input parameters expected input DD-MM-YYYY'), 400);
+            send_response(array('message' => 'Invalid date input expected DD-MM-YYYY'), 400);
         }
 
         $attendance = $this->model->userByDay($uid, $date);
@@ -26,7 +26,7 @@ class AttendanceController {
     public function getAttendanceByDay($date) {
 
         if (!checkInputDate($date)) {
-            send_response(array('message' => 'Invalid input parameters expected input DD-MM-YYYY'), 400);
+            send_response(array('message' => 'Invalid date input expected DD-MM-YYYY'), 400);
         }
 
         $attendances = $this->model->byDay($date);
@@ -45,7 +45,7 @@ class AttendanceController {
         $date = "01-$month-$year";
 
         if (!checkInputDate($date)) {
-            send_response(array('message' => 'Invalid input parameters expected input DD-MM-YYYY'), 400);
+            send_response(array('message' => 'Invalid date input expected DD-MM-YYYY'), 400);
         }
 
         $result = $this->model->byMonth($date);
