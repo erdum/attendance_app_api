@@ -1,3 +1,3 @@
 <?php 
 
-send_response(['message' => 'Requested resource not found'], 404);
+send_response(array('message' => 'Requested resource not found'), 404);

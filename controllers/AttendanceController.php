@@ -11,7 +11,7 @@ class AttendanceController {
     public function getAttendanceByDay($date) {
 
         if (!checkInputDate($date)) {
-            send_response(['message' => 'Invalid input parameters expected input DD-MM-YYYY'], 400);
+            send_response(array('message' => 'Invalid input parameters expected input DD-MM-YYYY'), 400);
         }
 
         $attendances = $this->model->byDay($date);
@@ -22,7 +22,7 @@ class AttendanceController {
             array_push($data, $row);
         }
 
-        send_response(['data' => $data]);
+        send_response(array('data' => $data));
     }
 
     public function getMonthlyAttendanceCSV($year, $month) {
@@ -30,7 +30,7 @@ class AttendanceController {
         $date = "01-$month-$year";
 
         if (!checkInputDate($date)) {
-            send_response(['message' => 'Invalid input parameters expected input DD-MM-YYYY'], 400);
+            send_response(array('message' => 'Invalid input parameters expected input DD-MM-YYYY'), 400);
         }
 
         $result = $this->model->byMonth($date);
@@ -75,7 +75,7 @@ class AttendanceController {
         $data = json_decode(file_get_contents("php://input"), true);
 
         if (count(array_diff($params, array_keys($data))) > 0) {
-            send_response(['message' => 'Missing input parameters'], 400);
+            send_response(array('message' => 'Missing input parameters'), 400);
         }
 
         try {
@@ -89,9 +89,9 @@ class AttendanceController {
                 $data['location']
             );
 
-            send_response(['message' => 'Attendance successfully saved', 'data' => $data], 201);
+            send_response(array('message' => 'Attendance successfully saved', 'data' => $data), 201);
         } catch (Exception $err) {
-            send_response(['message' => 'Unable to save attendance, error occurred', 'error' => $err], 500);
+            send_response(array('message' => 'Unable to save attendance, error occurred', 'error' => $err), 500);
         }
     }
 
@@ -106,7 +106,7 @@ class AttendanceController {
         $data = json_decode(file_get_contents("php://input"), true);
 
         if (count(array_diff($params, array_keys($data))) > 0) {
-            send_response(['message' => 'Missing input parameters'], 400);
+            send_response(array('message' => 'Missing input parameters'), 400);
         }
 
         $check_in_date = date('Ymd', strtotime('-6 hours', $data['time']));
@@ -120,9 +120,9 @@ class AttendanceController {
                 $data['coordinates']
             );
 
-            send_response(['message' => 'Checkout successfully saved', 'data' => $data], 201);
+            send_response(array('message' => 'Checkout successfully saved', 'data' => $data), 201);
         } catch (Exception $err) {
-            send_response(['message' => 'Unable to save checkout, error occurred', 'error' => $err], 500);
+            send_response(array('message' => 'Unable to save checkout, error occurred', 'error' => $err), 500);
         }
     }
 }
