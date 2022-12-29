@@ -41,14 +41,14 @@ function route($route, $path_to_include){
   if( $route_parts[0] == '' && count($request_url_parts) == 0 ){
     // Callback function
     if( is_callable($callback) ){
-      call_user_func_array($callback, []);
+      call_user_func_array($callback, array());
       exit();
     }
     include_once __DIR__."/../controllers/$path_to_include";
     exit();
   }
   if( count($route_parts) != count($request_url_parts) ){ return; }  
-  $parameters = [];
+  $parameters = array();
   for( $__i__ = 0; $__i__ < count($route_parts); $__i__++ ){
     $route_part = $route_parts[$__i__];
     if( preg_match("/^[$]/", $route_part) ){
