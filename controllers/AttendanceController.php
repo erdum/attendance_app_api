@@ -14,11 +14,7 @@ class AttendanceController {
             send_response(array('message' => 'Invalid date input expected DD-MM-YYYY'), 400);
         }
 
-        $attendance = $this->model->userByDay($uid, $date);
-
-        if (!$attendance) {
-            send_response(array('message' => 'Requested resource not found'), 404);
-        }
+        $attendance = $this->model->userByDay($uid, $date) ?: array();
 
         send_response(array('data' => $attendance));
     }
