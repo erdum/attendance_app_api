@@ -69,7 +69,8 @@ SQL;
         $check_in_date,
         $check_in_time,
         $check_in_coordinates,
-        $check_in_location
+        $check_in_location,
+        $avatar
     ) {
         $query = <<<SQL
         insert into attendance (
@@ -79,7 +80,8 @@ SQL;
             check_in_date,
             check_in_time,
             check_in_coordinates,
-            check_in_location
+            check_in_location,
+            avatar
         ) values (
             :uid,
             :name,
@@ -87,7 +89,8 @@ SQL;
             :date,
             :time,
             :coordinates,
-            :location
+            :location,
+            :avatar
         );
 SQL;
 
@@ -101,6 +104,7 @@ SQL;
         $stmt->bindParam(':time', $check_in_time, SQLITE3_INTEGER);
         $stmt->bindParam(':coordinates', $check_in_coordinates, SQLITE3_TEXT);
         $stmt->bindParam(':location', $check_in_location, SQLITE3_TEXT);
+        $stmt->bindParam(':avatar', $avatar, SQLITE3_TEXT);
 
         $stmt->execute();
         $stmt->reset();

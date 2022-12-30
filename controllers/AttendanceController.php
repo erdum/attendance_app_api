@@ -80,7 +80,8 @@ class AttendanceController {
             'date',
             'time',
             'coordinates',
-            'location'
+            'location',
+            'avatar'
         );
 
         $data = json_decode(file_get_contents("php://input"), true);
@@ -97,7 +98,8 @@ class AttendanceController {
                 $data['date'],
                 $data['time'],
                 $data['coordinates'],
-                $data['location']
+                $data['location'],
+                $data['avatar']
             );
 
             send_response(array('message' => 'Attendance successfully saved', 'data' => $data), 201);

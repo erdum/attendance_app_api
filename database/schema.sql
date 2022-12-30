@@ -9,7 +9,8 @@ CREATE TABLE attendance (
     check_out_time INTEGER,
     check_in_coordinates TEXT NOT NULL,
     check_out_coordinates TEXT,
-    check_in_location TEXT NOT NULL
+    check_in_location TEXT NOT NULL,
+    avatar TEXT
 );
 
 CREATE INDEX uid ON attendance (uid);
