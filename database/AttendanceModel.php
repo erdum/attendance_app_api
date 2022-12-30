@@ -92,7 +92,7 @@ SQL;
 SQL;
 
         $stmt = $this->db->prepare($query);
-        $formatted_date = date('Ymd', strtotime($check_in_date));
+        $formatted_date = (int) date('Ymd', strtotime($check_in_date));
 
         $stmt->bindParam(':uid', $uid, SQLITE3_TEXT);
         $stmt->bindParam(':name', $name, SQLITE3_TEXT);
