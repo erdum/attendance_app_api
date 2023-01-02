@@ -52,20 +52,26 @@ class AttendanceController {
         $output = fopen("php://output", "w");
         fputcsv($output, array(
             'id',
-            'uid',
             'name',
             'email',
             'check_in_date',
             'check_in_time',
             'check_out_date',
             'check_out_time',
-            'check_in_coordinates',
-            'check_out_coordinates',
             'check_in_location'
         ));
 
         while($row = $result->fetchArray(SQLITE3_ASSOC)) {
-            fputcsv($output, $row);
+            fputcsv($output, array(
+                $row['id'],
+                $row['name'],
+                $row['email'],
+                strtotime('Y-m-d', $row['check_in_date']),
+                strtotime('H:M meridian', $row['check_in_time']),
+                strtotime('Y-m-d', $row['check_out_date']),
+                strtotime('H:M meridian', $row['check_out_time']),
+                $row['check_in_location']
+            ));
         }
 
         fclose($output);
