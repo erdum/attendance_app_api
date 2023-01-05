@@ -5,6 +5,7 @@ date_default_timezone_set('UTC');
 require_once __DIR__.'/core/router.php';
 require_once __DIR__.'/controllers/AttendanceController.php';
 
+// Handling Pre-Flight request made by browser to test CORS
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
   header('Access-Control-Allow-Origin: *');
   header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
