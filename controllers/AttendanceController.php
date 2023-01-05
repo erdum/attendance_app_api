@@ -37,6 +37,8 @@ class AttendanceController {
     }
 
     public function getMonthlyAttendanceCSV($year, $month) {
+
+        date_default_timezone_set('Asia/Karachi');
         
         $date = "01-$month-$year";
 
