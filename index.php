@@ -1,9 +1,9 @@
 <?php
 
+date_default_timezone_set('UTC');
+
 require_once __DIR__.'/core/router.php';
 require_once __DIR__.'/controllers/AttendanceController.php';
-
-date_default_timezone_set('UTC');
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
   header('Access-Control-Allow-Origin: *');
@@ -21,6 +21,7 @@ $config = array(
 
 $attendanceController = new AttendanceController($config['db_path']);
 
+// Routes
 get('/attendance/today/$date', array($attendanceController, 'getAttendanceByDay'));
 get('/attendance/csv/$year/$month', array($attendanceController, 'getMonthlyAttendanceCSV'));
 get('/attendance/$date/$uid', array($attendanceController, 'getUserTodayAttendance'));
