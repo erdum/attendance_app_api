@@ -41,7 +41,7 @@ Change the database.db file user to your web server user (if needed)
 
 ## Deployment Local / Production (Nginx)
 
-Just make sure your web server has equivalent redirection rules as specified in .htaccess file for apache in the project directory
+Just make sure your web server has equivalent redirection rules same as specified in .htaccess file for apache in the project directory
 
 #### All set you can now use the API.
 ## FAQ
