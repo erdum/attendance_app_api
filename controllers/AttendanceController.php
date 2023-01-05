@@ -69,9 +69,9 @@ class AttendanceController {
                 $row['name'],
                 $row['email'],
                 date('Y-m-d', strtotime($row['check_in_date'])),
-                date('H:i A', $row['check_in_time']),
+                date('h:i A', $row['check_in_time']),
                 date('Y-m-d', strtotime($row['check_out_date'])),
-                date('H:i A', $row['check_out_time']),
+                date('h:i A', $row['check_out_time']),
                 $row['check_in_location']
             ));
         }
