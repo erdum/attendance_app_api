@@ -5,6 +5,80 @@ This API is made for the Super Technologies Attendance web app, initially we are
 
 The purpose of this API is to over come the complexity of Sheetson API which lacks basic query opreation and all the compution has to be done on the client side.
 
+## API Reference
+
+#### Get daily Attendances by date
+
+```http
+  GET /attendance/today/{date}
+```
+
+| Route Parameter | Type     | Description                |
+| :-------------- | :------- | :------------------------- |
+| `date`          | `string` | DD-MM-YYYY                 |
+
+#### Get User Attendance by date
+
+```http
+  GET /attendance/{date}/{uid}
+```
+
+| Route Parameter | Type     | Description                |
+| :-------------- | :------- | :------------------------- |
+| `date`          | `string` | DD-MM-YYYY                 |
+| `uid`           | `string` | UID specific to the user   |
+
+#### Mark User Attendance
+
+```json
+  POST /attendance
+
+  Request JSON Payload
+  {
+      uid: <string> uid specific to the user,
+      name: <string> user name,
+      email: <string> user email,
+      date: <string> date of attendance DD-MM-YYYY,
+      time: <string> epoch time in seconds example 1672992237,
+      coordinates: <string> coordinates of user location,
+      location: <string> location name,
+      avatar: <string> user avatar image url
+  }
+```
+
+#### Mark User Checkout
+
+```http
+  POST /attendance/{uid}
+```
+
+| Route Parameter | Type     | Description                |
+| :-------------- | :------- | :------------------------- |
+| `uid`           | `string` | UID specific to the user   |
+
+```json
+  Request JSON Payload
+  {
+      date: <string> date of check out DD-MM-YYYY,
+      time: <string> epoch time in seconds example 1672992237,
+      coordinates: <string> coordinates of user location
+  }
+```
+
+> **_NOTE:_**  check out could only be marked after 6 hours of marking attendance
+
+#### Get monthly Attendance in CSV format
+
+```http
+  GET /attendance/csv/{year}/{month}
+```
+
+| Route Parameter | Type     | Description                |
+| :-------------- | :------- | :------------------------- |
+| `year`          | `string` | YYYY                       |
+| `month`         | `string` | MM from 01 to 12           |
+
+
 ## Deployment Local / Production (Apache only)
 
 Clone the project in your web server root directory e.g. /var/www/html/
@@ -41,7 +115,7 @@ Change the database.db file user to your web server user (if needed)
 
 ## Deployment Local / Production (Nginx)
 
-Just make sure your web server has equivalent redirection rules same as specified in .htaccess file for apache in the project directory
+Just make sure your web server has equivalent redirection rules as specified in .htaccess file for apache in the project directory
 
 #### All set you can now use the API.
 ## FAQ
