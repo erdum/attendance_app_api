@@ -9,7 +9,7 @@ The purpose of this API is to over come the complexity of Sheetson API which lac
 
 #### Get daily Attendances by date
 
-```http
+```
   GET /attendance/today/{date}
 ```
 
@@ -19,7 +19,7 @@ The purpose of this API is to over come the complexity of Sheetson API which lac
 
 #### Get User Attendance by date
 
-```http
+```
   GET /attendance/{date}/{uid}
 ```
 
@@ -30,7 +30,7 @@ The purpose of this API is to over come the complexity of Sheetson API which lac
 
 #### Mark User Attendance
 
-```json
+```
   POST /attendance
 
   Request JSON Payload
@@ -48,7 +48,7 @@ The purpose of this API is to over come the complexity of Sheetson API which lac
 
 #### Mark User Checkout
 
-```http
+```
   POST /attendance/{uid}
 ```
 
@@ -56,7 +56,7 @@ The purpose of this API is to over come the complexity of Sheetson API which lac
 | :-------------- | :------- | :------------------------- |
 | `uid`           | `string` | UID specific to the user   |
 
-```json
+```
   Request JSON Payload
   {
       date: <string> date of check out DD-MM-YYYY,
@@ -69,7 +69,7 @@ The purpose of this API is to over come the complexity of Sheetson API which lac
 
 #### Get monthly Attendance in CSV format
 
-```http
+```
   GET /attendance/csv/{year}/{month}
 ```
 
@@ -83,31 +83,31 @@ The purpose of this API is to over come the complexity of Sheetson API which lac
 
 Clone the project in your web server root directory e.g. /var/www/html/
 
-```bash
+```
   git clone https://github.com/erdum/attendance_app_api.git
 ```
 
 Go to the database directory inside the project directory
 
-```bash
+```
   cd database/
 ```
 
 Initializing the database (make sure you have sqlite3 installed)
 
-```bash
+```
   sqlite3 database.db < schema.sql
 ```
 
 Give 775 permissions to database.db file
 
-```bash
+```
   sudo chmod 755 database.db
 ```
 
 Change the database.db file user to your web server user (if needed)
 
-```bash
+```
   sudo chown apache.apache database.db
 ```
 
