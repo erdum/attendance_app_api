@@ -65,7 +65,6 @@ The purpose of this API is to over come the complexity of Sheetson API which lac
   }
 ```
 
-> **_NOTE:_**  check out could only be marked after 6 hours of marking attendance
 
 #### Get monthly Attendance in CSV format
 
