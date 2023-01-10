@@ -136,13 +136,6 @@ Make sure you have sqlite3 installed in your machine and also php-sqlite3 module
 Make sure all the php files in the web server root directory are executable also check your server configuration
 
 
-## Roadmap
-
-- IP white listing
-
-- Request limiting
-
-
 ## Copyright
 
 All right reserved by Super Technologies inc
